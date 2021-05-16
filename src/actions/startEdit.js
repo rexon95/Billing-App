@@ -4,7 +4,7 @@ export const startEdit = (formData,id) =>{
 
     return (dispatch) =>{
         const token = localStorage.getItem('token')
-        axios.put(`http://dct-billing-app.herokuapp.com/api/customers/${id}`,formData,{
+        axios.put(`https://dct-billing-app.herokuapp.com/api/customers/${id}`,formData,{
             headers : {
                 'Authorization' : `Bearer ${token}`
             }
