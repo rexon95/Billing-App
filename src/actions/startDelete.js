@@ -5,7 +5,7 @@ export const startDelete = (id,flist) =>{
     return (dispatch)=>{
             const token = localStorage.getItem('token')
 
-          axios.delete(`http://dct-billing-app.herokuapp.com/api/customers/${id}`,{
+          axios.delete(`https://dct-billing-app.herokuapp.com/api/customers/${id}`,{
               headers : {
                   'Authorization' : `Bearer ${token}`
               }
