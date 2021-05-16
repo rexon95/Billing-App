@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const startLogin = (formData,history,handleAuth) =>{
       
-   return (dispatch) =>{ axios.post('http://dct-billing-app.herokuapp.com/api/users/login',formData)
+   return (dispatch) =>{ axios.post('https://dct-billing-app.herokuapp.com/api/users/login',formData)
     .then((res)=>{
          console.log(res.data)
          if(res.data.hasOwnProperty('errors')){
