@@ -7,7 +7,8 @@ export const startLogin = (formData,history,handleAuth) =>{
     .then((res)=>{
          console.log(res.data)
          if(res.data.hasOwnProperty('errors')){
-             alert(res.data.errors)
+            //  alert(res.data.errors)
+            swal('oops!',res.data.errors,'warning')
          }else{
         //  alert('logged in successfully!')
         swal('Success!','logged in successfully!','success')
