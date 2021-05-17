@@ -6,5 +6,5 @@ Packages used :
 React,Redux,React-redux,Redux-thunk,axios,React-router-dom,Validator,React-print,Bootstrap,
 React-strap,React-select.
 
-#Demo
+# Demo
 Desktop site : https://billing-app-rex.herokuapp.com/
