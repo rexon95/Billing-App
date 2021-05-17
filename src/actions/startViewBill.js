@@ -5,7 +5,7 @@ export const startViewBill = (id,setViewData) =>{
     return (dispatch) =>{
          const token = localStorage.getItem('token')
 
-         axios.get(`http://dct-billing-app.herokuapp.com/api/bills/${id}`,{
+         axios.get(`https://dct-billing-app.herokuapp.com/api/bills/${id}`,{
              headers : {
                  'Authorization' : `Bearer ${token}`
              }
