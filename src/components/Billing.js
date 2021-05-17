@@ -47,12 +47,12 @@ const Billing = (props) =>{
             <div className = "col-md-3">
                      <input type="date" name="date" className="form-control" onChange={handleDate} value={date}/>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
             <Select 
                          value={selectedOption}
                          onChange = {handleChange}
                          options = {options}
-                         placeholder= 'Mobile no'
+                         placeholder= 'CustomerName or Mob-no'
                      />
             </div>
         </div>

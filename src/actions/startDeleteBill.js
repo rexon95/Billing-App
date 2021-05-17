@@ -6,7 +6,7 @@ export const startDeleteBill = (id,fdata) => {
     const token = localStorage.getItem('token')
 
    return (dispatch) =>{ 
-         axios.delete(`http://dct-billing-app.herokuapp.com/api/bills/${id}`,{
+         axios.delete(`https://dct-billing-app.herokuapp.com/api/bills/${id}`,{
          headers : {
              'Authorization' : `Bearer ${token}`
          }

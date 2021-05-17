@@ -6,7 +6,7 @@ export const startAddPro = (formData) =>{
 
   return (dispatch) => {
 
-                axios.post('http://dct-billing-app.herokuapp.com/api/products',formData,{
+                axios.post('https://dct-billing-app.herokuapp.com/api/products',formData,{
                     headers : {
                         'Authorization' : `Bearer ${token}`
                     }

@@ -116,10 +116,10 @@ const Register = (props) => {
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="basic-addon1"><i className="fa fa-suitcase"></i></span>
                         </div>
-                        <input type="text" className="form-control" placeholder="Business Name" onChange={handleChange} name="bname" value={bname} />
+                        <input type="text" className="form-control" placeholder="Business Name" onChange={handleChange} name="bname" value={bname} required />
                 </div>
                 <div className="input-group mb-3">
-                        <textarea type="text" className="form-control" placeholder="Address" onChange={handleChange} name="address" value={address} />
+                        <textarea type="text" className="form-control" placeholder="Address" onChange={handleChange} name="address" value={address} required />
                 </div>
                 <div className="input-group mb-3">
                         <input type="submit" className="btn btn-success mx-auto" value="Register"/>

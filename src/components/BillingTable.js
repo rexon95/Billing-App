@@ -25,7 +25,7 @@ const BillingTable = (props) =>{
    })
 
 
-   console.log(billdata,'from bill tale')
+   console.log(billdata,'from bill data')
 
    const handleGetCustomer = (id) =>{
        const cxname = cxdata.filter((ele)=>{
@@ -54,8 +54,10 @@ const BillingTable = (props) =>{
         //  toggle()
    }
     console.log('viedata',viewData)
+
     return(
         <>
+           
           <h2 className="mt-3 ml-5 mb-3">Bill Listing</h2>
                {billdata.length !==0 ? (<table className="table table-striped table-bordered">
                         <thead>
@@ -72,7 +74,7 @@ const BillingTable = (props) =>{
                                 billdata.map((ele,i)=>{
                                   return <tr key={i}>
                                             <td>{i+1}</td>
-                                            <td>{ele.date.slice(0,10)}</td>
+                                            <td>{ele.date.slice(0,10).split("-").reverse().join("-")}</td>
                                             <td>{handleGetCustomer(ele.customer)}</td>
                                             <td><button className="btn btn-success" onClick={()=>{handleView(ele._id)}}>View</button></td>
                                             <td><button className="btn btn-danger" onClick={()=>{handleDelete(ele._id)}}>Delete</button></td>

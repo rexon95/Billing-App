@@ -4,7 +4,7 @@ export const startAddcx = (formData) =>{
 
     return (dispatch) =>{
         const token = localStorage.getItem('token')
-        axios.post('http://dct-billing-app.herokuapp.com/api/customers',formData,{
+        axios.post('https://dct-billing-app.herokuapp.com/api/customers',formData,{
             headers : {
                 'Authorization' : `Bearer ${token}`
             }

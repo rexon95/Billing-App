@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link,Redirect,Route,Switch, withRouter} from 'react-router-dom'
+import swal from 'sweetalert'
 import Dashboard from './Dashboard'
 import Home from './Home'
 import Login from './Login'
@@ -22,7 +23,8 @@ const Navbar = (props) =>{
                     <li className="nav-item active">
                         <Link className="nav-link" onClick={()=>{
                             localStorage.removeItem('token')
-                            alert('logged out successfully!')
+                            // alert('logged out successfully!')
+                            swal('Success!','logged out successfully!','success')
                             handleAuth()
                             props.history.push('/login')
                         }}>Logout <i className="fa fa-power-off"></i></Link>

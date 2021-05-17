@@ -6,7 +6,7 @@ export const startPostBill = (formData) =>{
 
     return (dispatch) =>{
 
-          axios.post('http://dct-billing-app.herokuapp.com/api/bills',formData,{
+          axios.post('https://dct-billing-app.herokuapp.com/api/bills',formData,{
               headers : {
                   'Authorization' : `Bearer ${token}` 
               }

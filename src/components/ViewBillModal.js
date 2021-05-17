@@ -63,7 +63,7 @@ const ViewBillModal = (props) =>{
           <ModalBody>
               <div className="row">
                  <div className="col-md-4">
-                     <b>Date</b> : {viewData.date !== undefined && viewData.date.slice(0,10)}
+                     <b>Date</b> : {viewData.date !== undefined && viewData.date.slice(0,10).split("-").reverse().join("-")}
                  </div>
                 <div className="col-md-8">
                      <b>Mobile</b> : {viewData.customer !== undefined && handleCxMob(viewData.customer)}

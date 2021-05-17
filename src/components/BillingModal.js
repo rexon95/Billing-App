@@ -1,5 +1,6 @@
 import React, { useEffect,useState,useRef } from 'react';
 import {useDispatch} from 'react-redux'
+import swal from 'sweetalert'
 import {useReactToPrint} from 'react-to-print'
 import {startPostBill} from '../actions/startPostBill'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -38,6 +39,7 @@ const BillingModal = (props) => {
        dispatch(startPostBill(formdata))
        toggle()
        resetCartValue()
+       swal('Bill Generated!','generated bill will the 1st entry in the table below','success')
       }
 
       // const pdfGenerate = () =>{
@@ -65,7 +67,7 @@ const BillingModal = (props) => {
         <ModalBody>
              <div className="row">
                  <div className="col-md-4">
-                     <b>Date</b> : {date}
+                     <b>Date</b> : {date.split("-").reverse().join("-")}
                  </div>
                 {Object.keys(customer).length !==0 && <> <div className="col-md-8">
                      <b>Name</b> : {customer[0].name}

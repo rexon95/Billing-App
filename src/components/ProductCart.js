@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { useSelector } from 'react-redux'
+import swal from 'sweetalert'
 import Select from 'react-select'
 import BillingModal from './BillingModal'
 
@@ -11,6 +12,7 @@ const ProductCart = (props) =>{
     const [productList, setProductList] = useState([])
     const [modal, setModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState([])
+    const [togglePriceSubtotal,setTogglePriceSubtotal] = useState(false)
 
     const toggle = () => setModal(!modal);
 
@@ -35,6 +37,7 @@ const ProductCart = (props) =>{
 
      console.log('product',fdata)
      setSelectedProduct(fdata)
+     setTogglePriceSubtotal(true)
 //    setCustomer(fdata)
  }
 
@@ -71,12 +74,15 @@ const ProductCart = (props) =>{
            if(selProduct.product !== undefined && customer.length !== 0){
            setProductList([...productList, {...selProduct}])
            }else{
-               alert('select product,customer and date first')
+            //    alert('select product,customer and date first')
+               swal('oops!','Please select Date,Customer and Product','warning')
            }
            }else{
-               alert('select Product')
+            //    alert('select Product')
+               swal('oops!','Please select a product','warning')
            }
            setSelectedOption('')
+           setTogglePriceSubtotal(false)
            setQty(1)
      }
 
@@ -99,7 +105,8 @@ const ProductCart = (props) =>{
           if(customer.length !== 0 && productList.length !== 0 ){
               toggle()
           }else{
-              alert('select customer and product first!')
+            //   alert('select customer and product first!')
+              swal('oops!','Please select Date,Customer and Product','warning')
           }
       }
     return (
@@ -122,6 +129,16 @@ const ProductCart = (props) =>{
                    <button className="btn btn-warning text-black font-weight-bold" onClick={handleCartOpen}>Cart - <span className="badge badge-info">{productList.length}</span></button>
                  </div>
             </div>
+            {togglePriceSubtotal  && <div className="row ml-5 mt-2">
+                <div className="col-md-2">
+                      <label className="form-check-label">Price</label>
+                     <input className="form-control" value={selectedProduct[0].price} disabled/>
+                 </div>
+                 <div className="col-md-2">
+                      <label className="form-check-label">SubTotal</label>
+                     <input className="form-control" value={selectedProduct[0].price * qty} disabled/>
+                 </div>
+            </div>}
             <BillingModal modal={modal} toggle={toggle} customer={customer} date={date} productList={productList} findTotal={findTotal} handleDel={handleDel} resetCartValue={resetCartValue}/>
          </>
     )

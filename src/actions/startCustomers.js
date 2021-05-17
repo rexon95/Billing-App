@@ -5,7 +5,7 @@ export const startCustomers = () =>{
     return (dispatch) =>{
         const token = localStorage.getItem('token')
 
-        axios.get('http://dct-billing-app.herokuapp.com/api/customers',{
+        axios.get('https://dct-billing-app.herokuapp.com/api/customers',{
             headers : {
                 'Authorization' : `Bearer ${token}`
             }
