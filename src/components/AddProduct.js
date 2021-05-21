@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
+import swal from 'sweetalert'
 import {startAddPro} from '../actions/startAddPro'
 
 
@@ -28,6 +29,7 @@ const AddProduct = (props) =>{
              //reset
              setProduct('')
              setPrice('')
+             swal('Product Added!','','success')
 
        }
     return (

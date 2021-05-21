@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useSelector,useDispatch} from 'react-redux'
+import swal from 'sweetalert'
 import {startDeleteBill} from '../actions/startDeleteBill'
 import {startViewBill} from '../actions/startViewBill'
 import ViewBillModal from './ViewBillModal'
@@ -40,12 +41,22 @@ const BillingTable = (props) =>{
    }
 
    const handleDelete = (id) =>{
-      
-       const filteredBill = billdata.filter((ele)=>{
-           return id !== ele._id
-       })
-     
-      dispatch(startDeleteBill(id,filteredBill))
+          swal({
+            title: "Are you sure?",
+            icon: "warning",
+            buttons: ['Cancel','Yes'],
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if(willDelete){
+              const filteredBill = billdata.filter((ele)=>{
+                return id !== ele._id
+            })
+          
+           dispatch(startDeleteBill(id,filteredBill))
+             }
+        });
+
    }
 
    const handleView = (id) =>{

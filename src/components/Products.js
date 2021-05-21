@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
+import swal from 'sweetalert'
 import {startProDelete} from '../actions/startProDelete'
 import AddForm from './AddForm'
 import AddProduct from './AddProduct'
@@ -24,11 +25,22 @@ const Products = (props) =>{
    },[prodata])
 
     const handleDelete = (id) =>{
-        const flist = prodata.filter((ele)=>{
-            return  id !== ele._id
-        })
-        console.log('flist',flist)
-        dispatch(startProDelete(id,flist))
+
+        swal({
+            title: "Are you sure?",
+            icon: "warning",
+            buttons: ['Cancel','Yes'],
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+              if(willDelete){
+            const flist = prodata.filter((ele)=>{
+                return  id !== ele._id
+            })
+            console.log('flist',flist)
+            dispatch(startProDelete(id,flist))
+        }
+          });
      }
 
      const handleEdit = (id) =>{

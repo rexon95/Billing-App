@@ -1,11 +1,13 @@
 import React,{useState} from 'react'
 import Validator from 'validator' 
 import {useDispatch} from 'react-redux'
+import swal from 'sweetalert'
 import { startAddcx } from '../actions/startAddcx'
 import validator from 'validator'
 
 
 const AddForm = (props) =>{
+    const {handleAddNewCx} = props
     const dispatch = useDispatch()
     const [name,setName] = useState('')
     const [mobile,setMobile] = useState('')
@@ -61,6 +63,10 @@ const AddForm = (props) =>{
              setName('')
              setMobile('')
              setEmail('')
+             swal('Customer Added!','','success')
+             if(handleAddNewCx !== undefined){
+             handleAddNewCx()
+             }
              }else{
                  setFormErrors(errors)
                  console.log(errors)
@@ -68,6 +74,8 @@ const AddForm = (props) =>{
              
 
        }
+
+
     return (
         <>
            <div className="row ml-5">

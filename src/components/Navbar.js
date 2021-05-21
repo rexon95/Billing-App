@@ -22,11 +22,23 @@ const Navbar = (props) =>{
                     {loggedIn? (
                     <li className="nav-item active">
                         <Link className="nav-link" onClick={()=>{
-                            localStorage.removeItem('token')
-                            // alert('logged out successfully!')
-                            swal('Success!','logged out successfully!','success')
-                            handleAuth()
-                            props.history.push('/login')
+                             swal({
+                                title: "Are you sure?",
+                                icon: "warning",
+                                buttons: ['Cancel','Yes'],
+                                dangerMode: true,
+                              })
+                              .then((willlogout) => {
+                                if (willlogout) {
+
+                                    localStorage.removeItem('token')
+                                    // alert('logged out successfully!')
+                                    // swal('Success!','logged out successfully!','success')
+                                    handleAuth()
+                                    props.history.push('/login')
+                                 
+                                }
+                              });
                         }}>Logout <i className="fa fa-power-off"></i></Link>
                     </li>):(<><li className="nav-item active">
                         <Link to="/" className="nav-link" >Home</Link>

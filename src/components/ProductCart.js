@@ -12,7 +12,6 @@ const ProductCart = (props) =>{
     const [productList, setProductList] = useState([])
     const [modal, setModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState([])
-    const [togglePriceSubtotal,setTogglePriceSubtotal] = useState(false)
 
     const toggle = () => setModal(!modal);
 
@@ -37,7 +36,6 @@ const ProductCart = (props) =>{
 
      console.log('product',fdata)
      setSelectedProduct(fdata)
-     setTogglePriceSubtotal(true)
 //    setCustomer(fdata)
  }
 
@@ -82,7 +80,6 @@ const ProductCart = (props) =>{
                swal('oops!','Please select a product','warning')
            }
            setSelectedOption('')
-           setTogglePriceSubtotal(false)
            setQty(1)
      }
 
@@ -123,22 +120,45 @@ const ProductCart = (props) =>{
                  </div>
                  <div className="col-md-3">
                      <button className="btn btn-primary btn-sm" onClick={handleDecr}>-</button> {qty} <button className="btn btn-primary btn-sm" onClick={handleIncr}>+</button>
-                   <button className="btn btn-success ml-5" onClick={handleCart} >Add to cart</button>
-                 </div>
-                 <div className="col-md-3 ml-5">
-                   <button className="btn btn-warning text-black font-weight-bold" onClick={handleCartOpen}>Cart - <span className="badge badge-info">{productList.length}</span></button>
-                 </div>
-            </div>
-            {togglePriceSubtotal  && <div className="row ml-5 mt-2">
-                <div className="col-md-2">
-                      <label className="form-check-label">Price</label>
-                     <input className="form-control" value={selectedProduct[0].price} disabled/>
+                   <button className="btn btn-success ml-3 mr-0" onClick={handleCart} >Add to cart</button>
                  </div>
                  <div className="col-md-2">
-                      <label className="form-check-label">SubTotal</label>
-                     <input className="form-control" value={selectedProduct[0].price * qty} disabled/>
+                   <button className="btn btn-warning text-black font-weight-bold" onClick={handleCartOpen}>Cart - <span className="badge badge-info">{productList.length}</span></button>
                  </div>
-            </div>}
+                 
+            </div>
+            {productList.length !==0 && <div className="col-md-8 ml-5 mt-4">
+                       <div className="card">
+                           <div className="card-header text-center"><h4>Cart-item list</h4></div>
+                           <div className="card-body">
+                           <table className="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Qty</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Subtotal</th>
+                                        <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            productList.map((ele,i)=>{
+                                                return <tr key={i}>
+                                                          <td>{ele.product}</td>
+                                                          <td>{ele.quantity}</td>
+                                                          <td>{ele.price}</td>
+                                                          <td>{ele.price * ele.quantity}</td>
+                                                          <td><button className="btn btn-danger" onClick={()=>{handleDel(ele.id)}}>Remove</button></td>
+                                                      </tr>
+                                            })
+                                        }
+                                        
+                                    </tbody>
+                            </table>
+                            </div>
+                            </div>  {/* card end */}
+                 </div>}
             <BillingModal modal={modal} toggle={toggle} customer={customer} date={date} productList={productList} findTotal={findTotal} handleDel={handleDel} resetCartValue={resetCartValue}/>
          </>
     )

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import Select from 'react-select'
 import ProductCart from './ProductCart'
 import BillingTable from './BillingTable'
+import AddForm from './AddForm'
 
 
 
@@ -10,6 +11,7 @@ const Billing = (props) =>{
     const [selectedOption,setSelectedOption] = useState(null)
     const [customer,setCustomer] = useState([])
     const [date,setDate] = useState('')
+    const [toggleAddcx,setToggleAddcx] = useState(false)
     const cxdata = useSelector((state)=>{
         return state.customers
     })
@@ -38,7 +40,9 @@ const Billing = (props) =>{
           console.log(e.target.value)
           setDate(e.target.value)
       }
-
+      const handleAddNewCx = () => {
+        setToggleAddcx(!toggleAddcx)
+    }
 
     return(
         <>
@@ -55,9 +59,15 @@ const Billing = (props) =>{
                          placeholder= 'CustomerName or Mob-no'
                      />
             </div>
+            <div className="co-md-3">
+                <button className="btn btn-info" onClick={handleAddNewCx}>Add new customer</button>
+            </div>
         </div>
           <div className="row mt-3 ml-5">
               {Object.keys(customer).length !== 0 && <h5>Customer Name : {customer[0].name} &nbsp; &nbsp;Mobile : {customer[0].mobile}&nbsp;&nbsp; Email : {customer[0].email}</h5>}
+          </div>
+          <div className="row mt-3 ml-1">
+              {toggleAddcx && <AddForm handleAddNewCx={handleAddNewCx}/>}
           </div>
             <hr/>
             <ProductCart customer={customer} date={date}/><br/>

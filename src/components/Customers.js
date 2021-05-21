@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
+import swal from 'sweetalert'
 import {startCustomers} from '../actions/startCustomers'
 import {startDelete} from '../actions/startDelete'
 import cxReducer from '../reducers/cxReducer'
@@ -33,11 +34,22 @@ const Customers = (props) =>{
     // },[])  -- called in dashboard
      
     const handleDelete = (id) =>{
-       const flist = cxdata.filter((ele)=>{
-           return  id !== ele._id
-       })
-       console.log('flist',flist)
-       dispatch(startDelete(id,flist))
+        swal({
+            title: "Are you sure?",
+            icon: "warning",
+            buttons: ['Cancel','Yes'],
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+             if(willDelete){
+            const flist = cxdata.filter((ele)=>{
+                return  id !== ele._id
+            })
+            console.log('flist',flist)
+            dispatch(startDelete(id,flist))
+        }
+          
+          })
     }
 
     const handleEdit = (id) =>{
