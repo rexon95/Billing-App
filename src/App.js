@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import configureStore from './store/configureStore'
 import Navbar from './components/Navbar'
 import Dashboard from './components/Dashboard'
+import { Redirect } from 'react-router-dom'
 
 
 // const store = configureStore()
@@ -18,13 +19,12 @@ const App = (props) =>{
     if(localStorage.getItem('token')){
       handleAuth()
     }
-
   },[])
 
   return(
     <div className="container-fluid" style={{margin: 0,padding: 0}}>
       <Navbar loggedIn={loggedIn} handleAuth={handleAuth}/>
-      {loggedIn && <Dashboard/>}
+      {loggedIn? <Dashboard loggedIn={loggedIn} /> : <Redirect to="/"/>}
     </div>
   )
 }

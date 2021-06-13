@@ -53,12 +53,13 @@ const Navbar = (props) =>{
                 </div>
         </nav>
                 <Switch>
+                    {loggedIn? <Redirect to="/dashboard"/> : <>
                     {!loggedIn && <Route path="/" component={Home} exact={true}/>}
                     <Route path="/register" component={Register} exact={true}/>
                     <Route path="/login" render = {(props)=>{
 
                         return <Login {...props} handleAuth={handleAuth}/>
-                    }} exact={true}/>
+                    }} exact={true}/></>}
                     {/* {loggedIn?<Redirect to='/dashboard'/>:<Redirect to='/login'/>} */}
                 </Switch>
         </>

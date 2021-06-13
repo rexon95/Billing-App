@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import {Route, Switch,withRouter} from 'react-router-dom'
+import {Redirect, Route, Switch,withRouter} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import {startCustomers} from '../actions/startCustomers'
 import {startProducts} from '../actions/startProducts'
@@ -31,7 +31,7 @@ const Dashboard = (props) =>{
     const billdata = useSelector((state)=>{
          return state.bills
     })
-
+      console.log('fahsudsu',props.loggedIn)
     return(
        <>
         <Siderbar/>
